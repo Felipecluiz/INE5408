@@ -15,6 +15,7 @@ struct TrieNode {
     unsigned long posicao;
     unsigned long comprimento;  //se maior que zero, indica último caracter de uma palavra
     bool isEndOfWord;
+
 };
 // Returns new trie node (initialized to NULLs) 
 TrieNode* newNode(char l) 
@@ -65,5 +66,6 @@ bool search(TrieNode* root, std::string data)
     }
   
     return (temp != NULL && temp->isEndOfWord); 
-} 
+}
+
   

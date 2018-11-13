@@ -3,18 +3,21 @@
 #include <vector>
 #include <list>
 
+#include "trie.cpp"
+
+void parse_lib(TrieNode& tree, std::string path);
 
 int main() {
     
     std::string filename;
+    
+    // entrada
+    auto tree = newNode('.');
+    std::cin >> filename;
+
+    parse_lib(tree, filename);
+
     std::string word;
-    std::vector<std::string> vetor;
-
-    std::cin >> filename;  // entrada
-
-    std::fstream file(filename);
-
-    std::cout << filename << std::endl;  // esta linha deve ser removida
     
     while (1) {  // leitura das palavras ate' encontrar "0"
         std::cin >> word;
@@ -22,12 +25,29 @@ int main() {
             break;
         }
         //std::cout << word << endl;
-        vetor.push_back(word);
+        // vetor.push_back(word);
     }
-    for (auto x : vetor) {
-        std::cout << "coco" << x << "p" <<std::endl;
-    }
-
+    
 
     return 0;
+}
+
+void parse_lib(TrieNode*& tree, std::string path)
+{
+    std::fstream file(path);
+    std::string line;
+    auto size = 0;
+    while (std::getline(file, line))
+    {
+        auto word = "";
+        size = line.size();
+        for (int i = 1; i != line.size(); i++)
+        {
+            if (line.at(i) == ']')
+                break;
+            word = word + line.at(i);
+        }
+        insert(tree, word);
+        
+    }
 }
