@@ -40,14 +40,15 @@ void parse_lib(TrieNode*& tree, std::string path)
     while (std::getline(file, line))
     {
         auto word = "";
-        size = line.size();
+        size = size + line.size()+1;
         for (int i = 1; i != line.size(); i++)
         {
             if (line.at(i) == ']')
                 break;
             word = word + line.at(i);
         }
+
         insert(tree, word);
-        
+
     }
 }
